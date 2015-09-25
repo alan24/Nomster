@@ -15,6 +15,16 @@ body {
 	font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  height: 300px;
+}
+
 .navbar.navbar-inverse {
 	background: url('/assets/footer_lodyas.png');
 	border-radius: 0;

@@ -4,41 +4,29 @@
 	<br /><br />
 	<p><%= @place.description %></p>
 
-	<style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 400px;
-        width: 100%;
-      }
-	</style>
-
     <% if @place.latitude.present? && @place.longitude.present? %>
 
-  	  <script>
+  	<script>
 
 	  function initMap() {
-	  	var myLatLng = {lat: -25.363, lng: 131.044};
+	  	var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>}
 
-		  var map = new google.maps.Map(document.getElementById('map'), {
+		var map = new google.maps.Map(document.getElementById('map'), {
 		    zoom: 12,
 		    center: myLatLng
-		  });
+		});
 
-		  var marker = new google.maps.Marker({
+		var marker = new google.maps.Marker({
 		    position: myLatLng,
 		    map: map,
-		    title: 'Hello World!'
-		  });
+			title: 'Hello World!'
+		});
 		}
 
     </script>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=API_KEY&signed_in=true&callback=initMap"></script>
-    <div id="map"></div>
+    	<script async defer
+        	src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
+   	 	<div id="map"></div>
     <% end %>
 
     <br />
