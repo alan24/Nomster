@@ -51,27 +51,57 @@
 	  Add a comment
 	</button>
 
-	<!-- Modal -->
+	<!-- Button trigger modal -->
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myPhotoModal">
+		Add a photo
+	</button>
+
+	<!-- Comment Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	        <h4 class="modal-title" id="myModalLabel">Add a comment</h4>
-	      </div>
-	      <%= simple_form_for @comment, :url => place_comments_path(@place) do |f| %>
-	      <div class="modal-body">
-			<%= f.input :message %>
-			<%= f.input :rating, :as => :select, :collection => Comment::RATINGS %>
-		  </div>
-		  <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<%= f.submit "Add a Comment", :class => 'btn btn-primary' %>
-		  <% end %>
-	      </div>
+	  	<div class="modal-dialog">
+	    	<div class="modal-content">
+	      		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        		<h4 class="modal-title" id="myModalLabel">Add a comment</h4>
+	     		</div>
+	      		<%= simple_form_for @comment, :url => place_comments_path(@place) do |f| %>
+	      		<div class="modal-body">
+					<%= f.input :message %>
+					<%= f.input :rating, :as => :select, :collection => Comment::RATINGS %>
+		  		</div>
+		  		<div class="modal-footer">
+	        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<%= f.submit "Add a Comment", :class => 'btn btn-primary' %>
+	      		</div>
+	      		<% end %>
 	      </div>
 	  </div>
 	</div>
+</div>
+
+
+	<!-- Photo Modal -->
+	<div class="modal fade" id="myPhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Add a photo</h4>
+				</div>
+				<%= simple_form_for @photo, :url => place_photos_path(@place) do |f| %>
+				<div class="modal-body">
+					<%= f.input :caption %>
+					<%= f.input :picture %>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<%= f.submit "Add a Photo", :class => 'btn btn-primary' %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
 
 <div class="col-xs-10 col-xs-offset-1">
 	<h1 class="pull-left">Comments</h1>
@@ -91,5 +121,16 @@
 				<small><%= comment.user.email %></small>
 			</blockquote>
 		</div>
+	<% end %>
+
+	<h1 class="pull-left">Photo</h1>
+	<div class="clear">
+	<% @place.photos.each do |photo| %>
+		<div class="booyah-box col-xs-12 col-xs-offset-1">
+			<%= link_to photo.picture.url, :class => 'fancybox' do %>
+			<%= image_tag photo.picture, :class => 'img-responsive' %>
+		<% end %>
+		<blockquote><%= photo.caption %> </blockquote>
+	</div>
 	<% end %>
 </div>
