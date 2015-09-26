@@ -125,7 +125,7 @@
 	<% end %>
 
 	<h1>Photos</h1>
-	<div class="clear">
+	<div class="clear pull-left">
 	<% @place.photos.each do |photo| %>
 		<div>
 			<%= link_to photo.picture.url, :class => 'fancybox' do %>
