@@ -124,14 +124,21 @@
 		</div>
 	<% end %>
 
-	<h1>Photos</h1>
-	<div class="clear pull-left">
+<div class="col-xs-10 col-xs-offset-1">
+	<h1 class="pull-left">Photos</h1>
+	<!-- Button trigger modal for photos -->
+	<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-targets="#myPhotoModal">
+		Add a photo
+	</button>
+	
 	<% @place.photos.each do |photo| %>
-		<div>
+		<div class ="col-xs-12 col-sm-6">
 			<%= link_to photo.picture.url, :class => 'fancybox' do %>
         	<%= image_tag photo.picture, :class => 'img-responsive' %>
       	<% end %>
-        <blockquote><p><%= photo.caption %></p></blockquote>
+        <blockquote>
+        	<p><%= photo.caption %></p>
+        </blockquote>
 			
 		</div>
 	<% end %>
