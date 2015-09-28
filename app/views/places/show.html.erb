@@ -45,7 +45,7 @@
 
 		<%= f.submit "Add a Comment", :class => 'btn btn-primary' %>
 	<% end %>
-
+	<br /> <br />
 	<!-- Button trigger modal -->
 	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
 	  Add a comment
@@ -92,7 +92,7 @@
 				<div class="modal-body">
 				<%= simple_form_for @photo, :url => place_photos_path(@place) do |f| %>
 					<%= f.input :caption %>
-					<%= f.input :picture %>
+					<%= f.input :picture, :class => 'img-responsive' %>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -130,7 +130,8 @@
 	<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-targets="#myPhotoModal">
 		Add a photo
 	</button>
-	
+	<div class="clear"></div>
+</div>
 	<% @place.photos.each do |photo| %>
 		<div class ="col-xs-12 col-sm-6">
 			<%= link_to photo.picture.url, :class => 'fancybox' do %>
