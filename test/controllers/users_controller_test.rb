@@ -10,4 +10,9 @@ class UsersControllerTest < ActionController::TestCase
  		assert_response :success
  	end
 
+ 	test "user profile not found" do
+ 		get :show, :id => 'omg'
+ 		assert_response :not_found
+ 	end
+
 end
