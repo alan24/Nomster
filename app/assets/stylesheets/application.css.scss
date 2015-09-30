@@ -10,7 +10,9 @@
  *
  *= require_self
  *= require_tree .
+ *= require magnific-popup
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "magnific-popup"

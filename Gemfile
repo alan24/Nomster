@@ -52,7 +52,7 @@ gem 'will_paginate', '~> 3.0.7'
 gem 'factory_girl_rails', '~> 4.0'
 
 # image pops up
-
+gem 'magnific-popup-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
