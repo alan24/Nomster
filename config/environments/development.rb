@@ -11,7 +11,7 @@ Nomster::Application.configure do
   #  password: ENV['GMAIL_PASSWORD']
   #}
 
-  config.action_mailer.default_url_options = { :host => 'nomster-alan-lim.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3030'}
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

@@ -10,7 +10,7 @@ FactoryGirl.define do
 	factory :place do
 		name "Pizza Place"
 		address "123 Fake Street"
-		description "They sell pizza."
+		description "They sell pizza"
 		latitude(42.3631519)
 		longitude(-71.056098)
 		association :user
@@ -18,6 +18,7 @@ FactoryGirl.define do
 
 	factory :comment do
 		message "omg"
+		rating "1_star"
 		association :user
 		association :place
 	end
