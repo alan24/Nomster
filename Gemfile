@@ -51,6 +51,9 @@ gem 'will_paginate', '~> 3.0.7'
 # test development gem
 gem 'factory_girl_rails', '~> 4.0'
 
+# image pops up
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
