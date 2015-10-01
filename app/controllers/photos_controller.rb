@@ -5,6 +5,7 @@ class PhotosController < ApplicationController
 		@place.photos.create(photo_params)
 		redirect_to place_path(@place)
 	end
+	
 
 	private
 

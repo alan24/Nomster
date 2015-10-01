@@ -25,7 +25,8 @@
 
     </script>
     	<script async defer
-        	src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap"></script>
+        	src="https://maps.googleapis.com/maps/api/js?signed_in=true&callback=initMap">
+    	</script>
    	 	<div id="map"></div>
     <% end %>
 
@@ -104,13 +105,6 @@
 	</div>
 </div>
 
-<div class="col-xs-10 col-xs-offset-1">
-	<h1 class="pull-left">Comments</h1>
-	<!-- Button trigger modal -->
-	<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-targets="#myModal">
-		Add a comment
-	</button>
-	<div class="clear"></div>
 </div>
 	<% @place.comments.each do |comment| %>
 		<div class="col-xs-12 col-sm-6">
@@ -124,24 +118,19 @@
 		</div>
 	<% end %>
 
-<div class="col-xs-10 col-xs-offset-1">
-	<h1 class="pull-left">Photos</h1>
-	<!-- Button trigger modal for photos -->
-	<button class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-targets="#myPhotoModal">
-		Add a photo
-	</button>
-	<div class="clear"></div>
+<div class="user_images col-xs-8 col-xs-offset-2 col-md-10 col-md-offset-1">
+    <% @place.photos.each do |photo| %>
+        <div class="thumbnail img-responsive ">
+            <div class="img_caption">  
+               	<h4><%= photo.caption %></h4>
+            </div>
+               	<%= link_to photo.picture.to_s, :class => 'fancybox', :rel => 'gallery1' do %>
+                <%= image_tag photo.picture %>
+            <% end %>
+        </div>
+    <% end %> 
 </div>
-	<% @place.photos.each do |photo| %>
-		<div class ="col-xs-12 col-sm-6">
-			<%= link_to photo.picture.url, :class => 'fancybox' do %>
-        	<%= image_tag photo.picture, :class => 'img-responsive' %>
-      	<% end %>
-        <blockquote>
-        	<p><%= photo.caption %></p>
-        </blockquote>
-			
-		</div>
-	<% end %>
+
+
 
 

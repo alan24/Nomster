@@ -76,7 +76,12 @@ blockquote p {
 }
 
 .image-responsive {
-  margin-left: 100px;
+  margin: auto;
+  padding: auto;
+}
+
+#hello {
+  display: none;
 }
 
 .carousel {

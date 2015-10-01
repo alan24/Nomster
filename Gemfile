@@ -7,7 +7,7 @@ gem 'rails', '4.0.1'
 gem 'pg'
 
 # Use SCSS for stylesheets
-gem 'sass-rails'#, '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -52,7 +52,7 @@ gem 'will_paginate', '~> 3.0.7'
 gem 'factory_girl_rails', '~> 4.0'
 
 # image pops up
-gem 'magnific-popup-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

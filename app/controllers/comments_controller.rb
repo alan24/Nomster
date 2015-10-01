@@ -6,6 +6,11 @@ class CommentsController < ApplicationController
 		redirect_to places_path(@place)
 	end
 
+	def destroy
+		@place.destroy
+		redirect_to place_path(place)
+	end
+
 	private
 
 	def comment_params

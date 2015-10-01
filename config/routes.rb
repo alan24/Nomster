@@ -14,6 +14,8 @@ Nomster::Application.routes.draw do
       resources :users, :only => :show
       resources :comments, :only => :destroy
 
+    get 'map', :to => 'places#map'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
