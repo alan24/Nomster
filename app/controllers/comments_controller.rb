@@ -7,8 +7,9 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		@place.destroy
-		redirect_to place_path(place)
+		@comment = Comment.find(params[:id])
+		@comment.destroy
+		redirect_to places_path(@place)
 	end
 
 	private
