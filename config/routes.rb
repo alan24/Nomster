@@ -11,7 +11,7 @@ Nomster::Application.routes.draw do
       resources :photos, :only => :create
     end
 
-      resources :users, :only => :show
+      resources :users, :only => :show 
       resources :comments, :only => :destroy
 
     get 'map', :to => 'places#map'

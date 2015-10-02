@@ -8,6 +8,10 @@ class CommentsController < ApplicationController
 
 	def destroy
 		@comment = Comment.find(params[:id])
+		if @comment.user != current_user
+			return render :text => 'Not Allowed', :status => :forbidden
+		end
+
 		@comment.destroy
 		redirect_to places_path(@place)
 	end
