@@ -1,15 +1,15 @@
 <div class="booyah-box col-xs-10 col-xs-offset-1">
-	<h1><%= @place.name %></h1>
-	<i><%= @place.address %>
+	<h1><%= current_place.name %></h1>
+	<i><%= current_place.address %>
 	<br /><br />
-	<p><%= @place.description %></p>
+	<p><%= current_place.description %></p>
 
-    <% if @place.latitude.present? && @place.longitude.present? %>
+    <% if current_place.latitude.present? && current_place.longitude.present? %>
 
   	<script>
 
 	  function initMap() {
-	  	var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>}
+	  	var myLatLng = {lat: <%= current_place.latitude %>, lng: <%= current_place.longitude %>}
 
 		var map = new google.maps.Map(document.getElementById('map'), {
 		    zoom: 12,
@@ -34,13 +34,13 @@
 
 	<div class="pull-right">
 		<% if current_user && current_user == @place.user %>
-		<%= link_to 'Edit', edit_place_path(@place), :class => 'btn btn-primary' %>
-		<%= link_to 'Delete', place_path(@place), :method => :delete, :data => {:confirm => 'Are you sure you want to delete this?'}, :class => 'btn btn-danger' %>
+		<%= link_to 'Edit', edit_place_path(current_place), :class => 'btn btn-primary' %>
+		<%= link_to 'Delete', place_path(current_place), :method => :delete, :data => {:confirm => 'Are you sure you want to delete this?'}, :class => 'btn btn-danger' %>
 		<% end %>
 	</div>
 
 	<div class="clear"></div>
-	<%= simple_form_for @comment, :url => place_comments_path(@place) do |f| %>
+	<%= simple_form_for @comment, :url => place_comments_path(current_place) do |f| %>
 		<%= f.input :message %>
 		<%= f.input :rating, :as => :select, :collection => Comment::RATINGS %>
 
@@ -65,7 +65,7 @@
 	        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        		<h4 class="modal-title" id="myModalLabel">Add a comment</h4>
 	     		</div>
-	      		<%= simple_form_for @comment, :url => place_comments_path(@place) do |f| %>
+	      		<%= simple_form_for @comment, :url => place_comments_path(current_place) do |f| %>
 	      		<div class="modal-body">
 					<%= f.input :message %>
 					<%= f.input :rating, :as => :select, :collection => Comment::RATINGS %>
@@ -91,7 +91,7 @@
 				</div>
 				<div class="clear">
 				<div class="modal-body">
-				<%= simple_form_for @photo, :url => place_photos_path(@place) do |f| %>
+				<%= simple_form_for @photo, :url => place_photos_path(current_place) do |f| %>
 					<%= f.input :caption %>
 					<%= f.input :picture, :class => 'img-responsive' %>
 				</div>
@@ -106,7 +106,7 @@
 </div>
 
 </div>
-	<% @place.comments.each do |comment| %>
+	<% current_place.comments.each do |comment| %>
 		<div class="col-xs-12 col-sm-6">
 			<blockquote>
 				<% if comment.humanized_rating.present? %>
@@ -119,7 +119,7 @@
 	<% end %>
 
 <div class="user_images col-xs-8 col-xs-offset-2 col-md-10 col-md-offset-1">
-    <% @place.photos.each do |photo| %>
+    <% current_place.photos.each do |photo| %>
         <div class="thumbnail img-responsive ">
             <div class="img_caption">  
                	<h4><%= photo.caption %></h4>
