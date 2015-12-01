@@ -1,0 +1,9 @@
+<div class="booyah-box col-xs-10 col-xs-offset-1">
+  <h1>Edit your comment here</h1>
+  <%= simple_form_for @comment do |f| %>
+    <%= f.input :message %>
+    <%= f.input :rating, :as => :select, :collection => Comment::RATINGS %>
+    <br />
+    <%= f.submit 'Edit your comment', :class => 'btn btn-primary' %>
+  <% end %>
+</div>

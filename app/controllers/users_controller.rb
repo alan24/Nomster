@@ -6,5 +6,4 @@ class UsersController < ApplicationController
       render :text => "Not Found", :status => :not_found
     end
   end
-
 end
