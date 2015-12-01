@@ -48,10 +48,20 @@ gem 'fog', "~> 1.3.1"
 # include pagination
 gem 'will_paginate', '~> 3.0.7'
 
-# test development gem
-gem 'factory_girl_rails', '~> 4.0'
-
 # image pops up
+
+# Follow, like gem
+gem 'socialization'
+
+# Rspec Gem Tests BDD(Business Development Drive)
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  # test development gem
+  gem 'factory_girl_rails', '~> 4.0'
+end
+
+# Adjust sublime text to 2 tabs
+gem 'htmlbeautifier'
 
 
 # Use ActiveModel has_secure_password

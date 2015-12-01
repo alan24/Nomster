@@ -1,71 +1,58 @@
 class PlacesController < ApplicationController
-	before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
-	
-	
-	def index
-		@places = Place.all.paginate(:page => params[:page], :per_page => 5).order("created_at ASC")
-	end
+  before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+  before_action :require_current_place, :only => [:show, :edit, :update, :destroy]
 
-	def new
-		@place = Place.new
-	end
+  def index
+    @places = Place.all.paginate(:page => params[:page], :per_page => 5).order("created_at ASC")
+  end
 
-	def create
-		@place = current_user.places.create(place_params)
-		if @place.valid?
-			redirect_to root_path
-		else
-			render :new, :status => :unprocessable_enmity
-		end
-	end
+  def new
+    @place = Place.new
+  end
 
-	def show
-		@place = current_place
-		@comment = Comment.new
-		@photo = Photo.new
-	end
+  def create
+    @place = current_user.places.create(place_params)
+    if @place.valid?
+      redirect_to places_path
+    else
+      render :new, :status => :unprocessable_entity
+    end
+  end
 
-	def edit
-		@place = current_place
+  def show
+    @comment = Comment.new
+    @photo = Photo.new
+  end
 
-		if @place.user != current_user
-			return render :text => 'Not Allowed', :status => :forbidden
-		end
-	end
+  def edit
+  end
 
-	def update
-		@place = current_place
-		if @place.user != current_user
-			return render :text => 'Not Allowed', :status => :forbidden
-		end
+  def update
+    current_place.update_attributes(place_params)
+    if current_place.valid?
+      redirect_to places_path
+    else
+      return render :edit, :status => :unprocessable_entity
+    end
+  end
 
-		@place.update_attributes(place_params)
-		if @place.valid?
-			redirect_to root_path
-		else
-			return render :edit, :status => :unprocessable_enmity
-		end
-	end
+  def destroy
+    current_place.destroy
+    redirect_to places_path
+  end
 
-	def destroy
-		@place = current_place
-		if @place.user != current_user
-			return render :text => 'Not Allowed', :status => :forbidden
-		end
+  private
 
-		@place.destroy
-		redirect_to root_path
-	end
+  def require_current_place
+    render_not_found unless current_place.present?
+  end
 
-	private
+  helper_method :current_place
+  def current_place
+    @current_place ||= Place.find(params[:id])
+  end
 
-	helper_method :current_place
-	def current_place
-		@current_place ||= Place.find(params[:id])
-	end
-
-	def place_params
-		params.require(:place).permit(:name, :address, :description)
-	end
-
+  def place_params
+    params.require(:place).permit(:name, :address, :description)
+  end
 end
